@@ -1,4 +1,3 @@
-import { PlaidApi } from 'plaid';
 import { createLinkToken, exchangePublicToken, getAccounts, getBalance } from '../plaid-cli';
 
 // Mock the PlaidApi

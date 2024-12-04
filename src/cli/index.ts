@@ -2,6 +2,7 @@
 import { createLinkToken, exchangePublicToken, getAccounts, getTransactions, getBalance, getItem, getInstitution } from './plaid-cli';
 import { Logger } from './utils/logger';
 import { validateAccessToken, validatePublicToken, validateDate, validateInstitutionId, ValidationError } from './utils/validators';
+import type { APIError } from './utils/logger';
 
 const HELP_TEXT = `
 Available commands:
@@ -102,11 +103,7 @@ async function main() {
         Logger.info(HELP_TEXT);
     }
   } catch (error) {
-    if (error instanceof ValidationError) {
-      Logger.error(error.message);
-    } else {
-      Logger.error('An error occurred:', error);
-    }
+    Logger.error('An error occurred', error as APIError);
     process.exit(1);
   }
 }

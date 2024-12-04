@@ -1,11 +1,18 @@
 import chalk from 'chalk';
 
+export interface APIError {
+  response?: {
+    data?: any;
+  };
+  message?: string;
+}
+
 export class Logger {
   static success(message: string) {
     console.log(chalk.green('✓'), chalk.green(message));
   }
 
-  static error(message: string, error?: any) {
+  static error(message: string, error?: APIError) {
     console.error(chalk.red('✗'), chalk.red(message));
     if (error?.response?.data) {
       console.error(chalk.red('API Error:'), JSON.stringify(error.response.data, null, 2));
@@ -18,7 +25,7 @@ export class Logger {
     console.log(chalk.blue('ℹ'), chalk.blue(message));
   }
 
-  static warn(message: string) {
+  static warn(message: string | Error) {
     console.log(chalk.yellow('⚠'), chalk.yellow(message));
   }
 
