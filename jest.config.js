@@ -1,9 +1,13 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
+export default {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
   },
-  testMatch: ['**/__tests__/**/*.test.ts'],
-}; 
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  moduleNameMapper: {
+    '@vercel/v0': '<rootDir>/node_modules/@vercel/v0'
+  },
+  testPathIgnorePatterns: ['/node_modules/', '/dist/']
+} 
