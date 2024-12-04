@@ -1,9 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "next build",
-  "devCommand": "next dev",
   "framework": "nextjs",
-  "env": {
-    "NODE_ENV": "production"
-  }
+  "buildCommand": "next build",
+  "devCommand": "next dev"
 } 
