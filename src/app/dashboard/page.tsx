@@ -2,8 +2,15 @@ import { useEffect } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import Character from '@/components/Character';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Dashboard() {
+  const { data: session } = useSession();
+
+  if (!session) {
+    return <p>You need to be authenticated to view this page.</p>;
+  }
+
   useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -34,6 +41,7 @@ export default function Dashboard() {
     <div className="flex flex-col items-center">
       <Character />
       <h2 className="text-2xl font-semibold mt-4">Welcome to Your Financial Home</h2>
+      <button onClick={() => signOut()}>Sign Out</button>
       {/* Add UI elements for rooms and financial tracking */}
     </div>
   );
