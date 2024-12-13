@@ -1,7 +1,10 @@
 'use client'
 
 interface PlaidLinkProps {
-  // Add your props here
+  // Define the expected properties here
+  // For example:
+  onSuccess?: () => void; // Optional callback for success
+  onError?: (error: Error) => void; // Optional callback for error
 }
 
 export default function PlaidLink(props: PlaidLinkProps) {
@@ -12,10 +15,13 @@ export default function PlaidLink(props: PlaidLinkProps) {
         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         onClick={() => {
           // Add Plaid Link logic here
+          if (props.onSuccess) {
+            props.onSuccess();
+          }
         }}
       >
         Connect Account
       </button>
     </div>
-  )
+  );
 } 
